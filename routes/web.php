@@ -40,5 +40,5 @@ Route::group(['prefix' => 'uam', 'as' => 'uam.', 'middleware' => ['auth']], func
 });
 
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => ['auth']], function () {
-    Route::get('/edit', [App\Http\Controllers\HomeController::class, 'index'])->name('edit');
+    Route::get('/edit', [App\Http\Controllers\UserController::class, 'profile'])->name('edit');
 });

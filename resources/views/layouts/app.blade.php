@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }} @yield('title')</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -16,6 +16,8 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    @yield('head')
 </head>
 
 <body>
@@ -40,17 +42,23 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                @can('audit_log_access')
                                 <a class="dropdown-item {{ request()->routeIs('uam.audit_logs.*') ? 'active' : '' }}" href="{{ route('uam.audit_logs.index') }}">
                                     {{ __('nav.uam.audit_log') }}
                                 </a>
+                                @endcan
 
+                                @can('role_access')
                                 <a class="dropdown-item {{ request()->routeIs('uam.roles.*') ? 'active' : '' }}" href="{{ route('uam.roles.index') }}">
                                     {{ __('nav.uam.roles') }}
                                 </a>
+                                @endcan
 
+                                @can('permission_access')
                                 <a class="dropdown-item {{ request()->routeIs('uam.permissions.*') ? 'active' : '' }}" href="{{ route('uam.permissions.index') }}">
                                     {{ __('nav.uam.permissions') }}
                                 </a>
+                                @endcan
                             </div>
                         </li>
 
@@ -102,6 +110,8 @@
             @yield('content')
         </main>
     </div>
+
+    @yield('scripts')
 </body>
 
 </html>

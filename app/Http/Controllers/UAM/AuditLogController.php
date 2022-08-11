@@ -7,5 +7,13 @@ use Illuminate\Http\Request;
 
 class AuditLogController extends Controller
 {
-    //
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        return view('uam.audit_log.index');
+    }
 }
