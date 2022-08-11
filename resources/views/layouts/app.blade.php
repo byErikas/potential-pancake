@@ -33,14 +33,27 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         @can('user_management_access')
-                        <li class="nav-item">
-                            <a href="{{ route('admin.permissions.index') }}" class="nav-link {{ request()->routeIs('admin.permissions.*') ? 'active' : '' }}">
-                                <i class="nav-icon"></i>
-                                <p>
-                                    {{ __('cruds.navbar.uam') }}
-                                </p>
+
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ __('nav.uam.title') }}
                             </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item {{ request()->routeIs('uam.audit_logs.*') ? 'active' : '' }}" href="{{ route('uam.audit_logs.index') }}">
+                                    {{ __('nav.uam.audit_log') }}
+                                </a>
+
+                                <a class="dropdown-item {{ request()->routeIs('uam.roles.*') ? 'active' : '' }}" href="{{ route('uam.roles.index') }}">
+                                    {{ __('nav.uam.roles') }}
+                                </a>
+
+                                <a class="dropdown-item {{ request()->routeIs('uam.permissions.*') ? 'active' : '' }}" href="{{ route('uam.permissions.index') }}">
+                                    {{ __('nav.uam.permissions') }}
+                                </a>
+                            </div>
                         </li>
+
                         @endcan
                     </ul>
 
@@ -66,9 +79,12 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                    {{ __('nav.profile.title') }}
+                                </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('nav.profile.logout') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

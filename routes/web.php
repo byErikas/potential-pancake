@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'uam', 'as' => 'uam.', 'middleware' => ['auth']], function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     // Permissions
     Route::delete('permissions/destroy', [App\Http\Controllers\UAM\PermissionController::class, 'massDestroy'])->name('permissions.massDestroy');
@@ -37,4 +37,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
 
     // Audit Logs
     Route::resource('audit_logs', App\Http\Controllers\UAM\AuditLogController::class, ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
+});
+
+Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => ['auth']], function () {
+    Route::get('/edit', [App\Http\Controllers\HomeController::class, 'index'])->name('edit');
 });
