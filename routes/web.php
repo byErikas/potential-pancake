@@ -35,8 +35,8 @@ Route::group(['prefix' => 'uam', 'as' => 'uam.', 'middleware' => ['auth']], func
     Route::delete('users/destroy', [App\Http\Controllers\UserController::class, 'massDestroy'])->name('users.massDestroy');
     Route::resource('users', App\Http\Controllers\UserController::class,);
 
-    // Audit Logs
-    Route::resource('audit_logs', App\Http\Controllers\UAM\AuditLogController::class, ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
+    // Audit Log
+    Route::resource('audit_log', App\Http\Controllers\UAM\AuditLogController::class, ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
 });
 
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => ['auth']], function () {

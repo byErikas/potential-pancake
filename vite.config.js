@@ -5,18 +5,17 @@ export default defineConfig(({ command, mode }) => {
     const env = loadEnv(mode, process.cwd());
     return {
         server: {
-            host: true,
             hmr: {
-                host: env.VITE_APP_ADDRESS,
-            },
+                host: env.VITE_APP_ADDRESS
+            }
         },
         plugins: [
             laravel({
                 input: [
                     'resources/sass/app.scss',
-                    'resources/js/app.js',
+                    'resources/js/app.js'
                 ],
-                refresh: true,
+                refresh: true
             }),
         ],
     }

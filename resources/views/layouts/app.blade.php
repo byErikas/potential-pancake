@@ -43,7 +43,7 @@
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 @can('audit_log_access')
-                                <a class="dropdown-item {{ request()->routeIs('uam.audit_logs.*') ? 'active' : '' }}" href="{{ route('uam.audit_logs.index') }}">
+                                <a class="dropdown-item {{ request()->routeIs('uam.audit_log.*') ? 'active' : '' }}" href="{{ route('uam.audit_log.index') }}">
                                     {{ __('nav.uam.audit_log') }}
                                 </a>
                                 @endcan
